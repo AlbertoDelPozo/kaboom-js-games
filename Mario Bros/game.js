@@ -7,6 +7,9 @@ kaboom({
     clearColor: [0, 0, 0, 1],
 })
 
+
+let salta = true
+
 loadRoot('img/')
 loadSprite('moneda', 'moneda.png')
 loadSprite('seta-mala', 'seta-mala.png')
@@ -44,23 +47,31 @@ scene("game", () => {
 
     const nivelJuego = addLevel(mapa, confgNivel)
 
-    const puntuacion = add([
-        text(score),
-        pos(30, 6), 
-        layer('ui'), 
-        {
-            value: score, 
-        }
-    ])
+    // const puntuacion = add([
+    //     text(score),
+    //     pos(30, 6), 
+    //     layer('ui'), 
+    //     {
+    //         value: score, 
+    //     }
+    // ])
 
     add([text('level ' + 'test', pos(4,6))])
+
     const jugador = add([
         sprite('mario'), solid(), 
         pos(30, 0),
         body(),
-        area(),
+        
+        origin('bot')
     ])
 
+
+    jugador.action(() => {
+        if(jugador.grounded()) {
+            salta = false
+        }
+    })
 })
 
-start("game")
+go("game")
