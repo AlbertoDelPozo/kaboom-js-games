@@ -74,4 +74,4 @@ scene("game", () => {
     })
 })
 
-go("game")
+start("game")
